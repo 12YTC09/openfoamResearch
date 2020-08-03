@@ -164,7 +164,7 @@ int main(int argc, char *argv[])
             phiB = fvc::flux(B);
 
 		//A Poisson equation is derived for fictitious pressure pB : To correct the phiB value
-		//
+		//The magnetic field divergence errors are printed and loop starts again from the B predirection step, which now will use the updated phiB value
 
 
             while (bpiso.correctNonOrthogonal())
