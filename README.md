@@ -1,5 +1,5 @@
 # Research 
-=====
+
 ## solvers
 
 ### mhdFoam
