@@ -46,6 +46,15 @@ Description
     constraint presently observed in the present numerics which
     guarantees div(U) and div(H) are zero.
 
+Code description
+	the projection method : satisifying the  divergence-free condition 
+
+
+
+
+
+
+
 \*---------------------------------------------------------------------------*/
 
 #include "fvCFD.H"
@@ -75,8 +84,10 @@ int main(int argc, char *argv[])
         #include "CourantNo.H"
 
         {
+			
 
 			//動量方程
+			//solve velocity
             fvVectorMatrix UEqn
             (
                 fvm::ddt(U)
@@ -145,10 +156,16 @@ int main(int argc, char *argv[])
 
             BEqn.solve();
 
+		//The flux phiB distribution is then calculated on cell faces with the correction from the magnetic-velocity coupling			
+
             volScalarField rAB(1.0/BEqn.A());
             surfaceScalarField rABf("rABf", fvc::interpolate(rAB));
 
             phiB = fvc::flux(B);
+
+		//A Poisson equation is derived for fictitious pressure pB : To correct the phiB value
+		//
+
 
             while (bpiso.correctNonOrthogonal())
             {
