@@ -28,8 +28,8 @@ int main(void)
 
 
 	Info << label(st1.size()) << tab << string(word(st1)) << endl;
-
-        Info << setw(20)  << setprecision(3) << 1.234234 << endl;
+	
+	Info << setw(20)  << setprecision(3) << 1.234234 << endl;
 
 	Info << hex << 255 << endl;
 
