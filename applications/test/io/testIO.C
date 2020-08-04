@@ -9,11 +9,9 @@
 //Istream and Ostream manipulators taking arguments
 #include "IOmanip.H"
 
-//Single floating point number identical to float or double depending on 
-//whether WM_SP, WM_DP or WM_LP is defined.
+//Single floating point number identical to float or double depending on whether WM_SP, WM_DP or WM_LP is defined.
 #include "scalar.H"
-//A 1D array of objects of type <T>, where the size of the vector
-//is known and used for subscript bounds checking 
+//A 1D array of objects of type <T>, where the size of the vector is known and used for subscript bounds checking 
 #include "List.H"
 
 using namespace Foam;
@@ -31,7 +29,7 @@ int main(void)
 
 	Info << label(st1.size()) << tab << string(word(st1)) << endl;
 
-    Info << setw(20)  << setprecision(3) << 1.234234 << endl;
+        Info << setw(20)  << setprecision(3) << 1.234234 << endl;
 
 	Info << hex << 255 << endl;
 
