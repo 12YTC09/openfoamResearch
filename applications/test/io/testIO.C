@@ -27,7 +27,7 @@ int main(void)
 	string st1("1234567");
 
 
-	Info << label(st1.size()) << tab << string(word(st1)) << endl;
+	Info << st1.size() << tab << string(word(st1)) << endl;
 	
 	Info << setw(20)  << setprecision(3) << 1.234234 << endl;
 
