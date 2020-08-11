@@ -1,0 +1,9 @@
+testField.C
+
+
+EXE = $(FOAM_USER_APPBIN)/testField
+
+
+
+
+

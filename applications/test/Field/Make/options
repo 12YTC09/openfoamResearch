@@ -1,0 +1,9 @@
+
+
+EXE_INC = \
+    -I/home/aero310/OpenFOAM/OpenFOAM-6/src/OpenFOAM/lnInclude
+
+
+ EXE_LIBS = \
+    -L/home/aero310/OpenFoam/OpenFOAM-6/platforms/linux64GccDPINT64Opt/lib \
+            -lOpenFOAM
