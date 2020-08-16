@@ -36,11 +36,15 @@ Foam::List
 
 #include "argList.H"
 #include "OSspecific.H"
+#include "wordReList.H"
 
-
+#include "scalar.H"
+#include "vector.H"
 #include "IOstreams.H"
 #include "IStringStream.H"
+#include  "ListOps.H"
 
+#include <list>
 
 using namespace Foam;
 
@@ -54,13 +58,88 @@ int main(int argc, char *argv[])
 
     argList::noParallel();
     argList::addOption("reList","reList");
+    argList::addOption("wordList","wordList");
+    argList::addOption("stringList","stringList");
+    argList::addOption("float","xxx");
+    argList::addBoolOption("flag");
 
+    List<vector> list1(IStringStream("1 ((0 1 2))")());
+    Info << "list1:" << list1 << endl;
 
+    List<vector> list2=
+    {
+        vector(0,1,2),
+        vector(3,4,5),
+        vector(6,7,8)
+    };
+    Info << "list2: " << list2 << endl;
+
+    list1.append(list2);
+    Info << "list1.append(list2): " << list1 << endl;
+
+    List<vector> list3(list2.xfer());
+    Info << "Transfer via the xfer() method" << endl;
+    Info << "list2: " << list2 << nl
+         << "list3: " << list3 << endl;
+
+    List<vector> list4 
+    {
+        vector(0,1,2),
+        vector(3,4,5),
+        vector(6,7,8)
+    };
+    Info << "list4: " << list4 << endl;
+
+    List<vector> list5=
+    {
+        vector{8,1,0},
+        vector{5,3,1},
+        vector{10,2,2}
+    };
+    Info << "list5: " << list5 << endl;
+
+    list4.swap(list5);
+    Info << "Swapped via the swap() method" << endl;
+    Info << "list4: " << list4 << nl 
+         << "list5: " << list5 << endl;
+
+    List<vector> list6(list4.begin(),list4.end());
+    Info << "list6: " << list6 << endl;
+
+    //Subset
+    //labelList: List<label>
+    
+    const labelList map{0 , 2};
+    List<vector> subList3(list3,map);
+    Info << "Elements " << map << "out of " << list3
+         << " => " << subList3 << endl; 
+
+    wordReList reList;
+    wordList wLst;
+    stringList sLst;
+
+    scalar xxx(-1);
+
+    if (args.optionFound("flag")) 
+    { 
+        Info << "-flag:" << args["flag"] << endl;
+    }
+
+    if (args.optionReadIfPresent<scalar>("float",xxx))
+    {
+        Info << "read float" << xxx << endl;
+    }
+
+    
     // * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+
+
+
 
     Info<< "\nEnd\n" << endl;
     return 0;
-}
+} 
 
 
 // ************************************************************************* //
