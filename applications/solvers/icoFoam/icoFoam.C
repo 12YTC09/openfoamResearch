@@ -37,6 +37,8 @@ Description
 int main(int argc, char *argv[])
 {
     #include "setRootCaseLists.H"
+
+    //The main purpose  ----test
     #include "createTime.H"
     #include "createMesh.H"
 
